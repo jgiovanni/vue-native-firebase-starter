@@ -1,0 +1,41 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'Agora' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for Agora
+
+  # Required by RNFirebase
+  pod 'Firebase/Core', '~> 5.0.1'
+
+  # [OPTIONAL PODS] - comment out pods for firebase products you won't be using.
+  pod 'Firebase/AdMob'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/DynamicLinks'
+  pod 'Firebase/Performance'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Storage'
+
+  pod 'Fabric', '~> 1.7.6'
+  pod 'Crashlytics', '~> 3.10.1'
+  # pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'React', :path => '../node_modules/react-native'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
+end
+
+install! 'cocoapods',
+         :deterministic_uuids => false
